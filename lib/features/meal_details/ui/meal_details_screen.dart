@@ -13,6 +13,10 @@ class MealDetailsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+
+    final favoriteMeals = ref.watch(favoriteMealsProvider);
+    final isFavorite = favoriteMeals.contains(meal);
+
     Widget content = SingleChildScrollView(
       child: Column(
         children: [
@@ -80,7 +84,7 @@ class MealDetailsScreen extends ConsumerWidget {
               final wasAdded = ref.read(favoriteMealsProvider.notifier).toggleFavoriteMeal(meal);
               Util().getInfoMessage(wasAdded ? 'Meal added on favorites.' : 'Meal was removed.', context);
             },
-            icon: const Icon(Icons.favorite),
+            icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_border),
           ),
           const SizedBox(
             width: 8,
