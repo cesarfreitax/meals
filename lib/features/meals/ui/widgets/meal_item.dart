@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:meals/features/meal_details/meal_details_screen.dart';
+import 'package:meals/features/meal_details/ui/meal_details_screen.dart';
 import 'package:meals/features/meals/data/model/meal.dart';
 import 'package:meals/features/meals/ui/widgets/meal_item_trait.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class MealItem extends StatelessWidget {
-  const MealItem({super.key, required this.meal});
+  const MealItem(
+      {super.key, required this.meal});
 
   final Meal meal;
 
@@ -24,7 +25,9 @@ class MealItem extends StatelessWidget {
     void selectMeal(BuildContext context, Meal meal) {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (ctx) => MealDetailsScreen(meal: meal),
+          builder: (ctx) => MealDetailsScreen(
+            meal: meal,
+          ),
         ),
       );
     }

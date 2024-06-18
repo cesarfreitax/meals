@@ -6,12 +6,14 @@ import 'package:meals/features/meals/data/model/meal.dart';
 import 'package:meals/features/meals/ui/meals_screen.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({super.key});
+  const CategoriesScreen({super.key, required this.availableMeals});
+
+  final List<Meal> availableMeals;
 
   @override
   Widget build(BuildContext context) {
     void selectCategory(BuildContext context, Category category) {
-      List<Meal> filteredMeals = dummyMeals
+      List<Meal> filteredMeals = availableMeals
           .where((meal) => meal.categories.contains(category.id))
           .toList();
 
@@ -25,11 +27,7 @@ class CategoriesScreen extends StatelessWidget {
       );
     }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Pick your category'),
-      ),
-      body: GridView(
+    return GridView(
         padding: const EdgeInsets.all(24),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
@@ -45,7 +43,6 @@ class CategoriesScreen extends StatelessWidget {
                 },
               ))
         ],
-      ),
-    );
+      );
   }
 }

@@ -3,9 +3,9 @@ import 'package:meals/features/meals/data/model/meal.dart';
 import 'package:meals/features/meals/ui/widgets/meal_item.dart';
 
 class MealsScreen extends StatelessWidget {
-  const MealsScreen({super.key, required this.title, required this.meals});
+  const MealsScreen({super.key, this.title, required this.meals});
 
-  final String title;
+  final String? title;
   final List<Meal> meals;
 
   @override
@@ -34,12 +34,13 @@ class MealsScreen extends StatelessWidget {
           itemCount: meals.length,
           itemBuilder: (ctx, index) {
             return MealItem(meal: meals[index]);
+
           });
     }
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(title ?? ""),
       ),
       body: content,
     );
